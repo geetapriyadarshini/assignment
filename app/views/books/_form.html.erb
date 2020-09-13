@@ -1,0 +1,30 @@
+<%= form_with(model: book, local: true) do |form| %>
+  <% if book.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+      <ul>
+      <% book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+  <label for="author">Select Author:</label>
+
+
+    <%= select_tag :author, options_for_select(authors.collect{ |u| [u.first_name, u.id]}), {multiple: true} %>
+
+  </div>
+
+  <div class="field">
+    <%= form.label :book_title %>
+    <%= form.text_field :book_title, id: :book_book_title %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
